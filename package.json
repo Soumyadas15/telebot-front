@@ -2,7 +2,7 @@
   "homepage": ".",
   "name": "weather-bot-admin-panel",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "proxy": "https://telebotclient.onrender.com/",
   "dependencies": {
     "@craco/craco": "^7.1.0",
