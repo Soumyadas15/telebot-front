@@ -10,6 +10,8 @@ function App() {
   const [users, setUsers] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   const responseGoogle = (response) => {
     console.log("success")
     setLoggedIn(true);
@@ -23,7 +25,7 @@ function App() {
   }, []);
 
   const fetchApiKey = () => {
-    axios.get('/admin/api-key')
+    axios.get(`${backendUrl}/admin/api-key`)
       .then((response) => {
         setApiKey(response.data);
       })
@@ -37,7 +39,7 @@ function App() {
     // Replace with your Nest.js API endpoint to update the API key
     const newApiKey = prompt('Enter the new API key:');
     if (newApiKey) {
-      axios.post('/admin/api-key', { key: newApiKey })
+      axios.post(`${backendUrl}/admin/api-key`, { key: newApiKey })
         .then((response) => {
           alert(response.data);
           fetchApiKey(); // Refresh the API key after update
@@ -50,7 +52,7 @@ function App() {
 
   const deleteUser = (chatId) => {
     // Send a DELETE request to delete the user
-    axios.delete(`/users/${chatId}`)
+    axios.delete(`${backendUrl}/users/${chatId}`)
       .then((response) => {
         alert(response.data.message);
         fetchUsers(); // Refresh the user list after deletion
@@ -62,7 +64,7 @@ function App() {
 
   const fetchUsers = () => {
     // Replace with your Nest.js API endpoint to fetch the list of users
-    axios.get('/users')
+    axios.get(`${backendUrl}/users`)
       .then((response) => {
         setUsers(response.data);
       })

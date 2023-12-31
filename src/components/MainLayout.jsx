@@ -7,13 +7,15 @@ const MainLayout = () => {
     const [newApiKey, setNewApiKey] = useState('');
     const [users, setUsers] = useState([]);
 
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   useEffect(() => {
     fetchApiKey();
     fetchUsers();
   }, []);
 
   const fetchApiKey = () => {
-    axios.get('/admin/api-key')
+    axios.get(`${backendUrl}/admin/api-key`)
       .then((response) => {
         setApiKey(response.data);
       })
@@ -25,7 +27,7 @@ const MainLayout = () => {
   const updateApiKey = () => {
     const newApiKey = prompt('Enter the new API key:');
     if (newApiKey) {
-      axios.post('/admin/api-key', { key: newApiKey })
+      axios.post(`${backendUrl}/admin/api-key`, { key: newApiKey })
         .then((response) => {
           alert(response.data);
           fetchApiKey();
@@ -37,7 +39,7 @@ const MainLayout = () => {
   };
 
   const deleteUser = (chatId) => {
-    axios.delete(`/users/${chatId}`)
+    axios.delete(`${backendUrl}/users/${chatId}`)
       .then((response) => {
         alert(response.data.message);
         fetchUsers(); // Refresh the user list after deletion
@@ -48,7 +50,7 @@ const MainLayout = () => {
   };
 
   const fetchUsers = () => {
-    axios.get('/users')
+    axios.get(`${backendUrl}/users`)
       .then((response) => {
         if (Array.isArray(response.data)) {
           setUsers(response.data);
