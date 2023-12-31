@@ -50,8 +50,11 @@ const MainLayout = () => {
   const fetchUsers = () => {
     axios.get('/users')
       .then((response) => {
-        console.log('User data:', response.data); // Log the response data
-        setUsers(response.data);
+        if (Array.isArray(response.data)) {
+          setUsers(response.data);
+        } else {
+          console.error('Invalid response format for users:', response.data);
+        }
       })
       .catch((error) => {
         console.error('Error fetching users:', error);
@@ -94,20 +97,26 @@ const MainLayout = () => {
               </tr>
             </thead>
             <tbody className='text-white'>
-              {/* {users.map((user) => (
-                <tr key={user.chatId}>
-                  <td className="bg-neutral-800 px-4 py-2">{user.username}</td>
-                  <td className="bg-neutral-800 px-4 py-2">{user.chatId}</td>
-                  <td className="bg-neutral-800 px-4 py-2">
-                    <button
-                      className="text-red-500 hover:text-red-700"
-                      onClick={() => deleteUser(user.chatId)}
-                    >
-                      Delete
-                    </button>
-                  </td>
+            {users.length === 0 ? (
+                <tr>
+                  <td colSpan="3" className="text-center">No data available</td>
                 </tr>
-              ))} */}
+              ) : (
+                users.map((user) => (
+                  <tr key={user.chatId}>
+                    <td className="bg-neutral-800 px-4 py-2">{user.username}</td>
+                    <td className="bg-neutral-800 px-4 py-2">{user.chatId}</td>
+                    <td className="bg-neutral-800 px-4 py-2">
+                      <button
+                        className="text-red-500 hover:text-red-700"
+                        onClick={() => deleteUser(user.chatId)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
