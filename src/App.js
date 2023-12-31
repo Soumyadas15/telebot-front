@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MainLayout from './components/MainLayout';
 import Sidebar from './components/Sidebar';
-import GoogleLogin from 'react-google-login';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
 function App() {
   const [apiKey, setApiKey] = useState('');
@@ -73,10 +73,25 @@ function App() {
 
   return (
     <div>
-      <div className="bg-neutral-800 h-screen w-full flex items-start gap-3">
+      {!loggedIn ? (
+        <div className="bg-neutral-800 h-screen w-full flex items-center justify-center gap-3">
+          <GoogleOAuthProvider clientId="1065205481470-0fqv18t793lkj6higbra5msfufq6p4jd.apps.googleusercontent.com">
+            <GoogleLogin
+                onSuccess={responseGoogle}
+                onError={() => {
+                  console.log('Login Failed');
+                }}
+              />
+          </GoogleOAuthProvider>
+          </div>
+      ) : (
+        <div className="bg-neutral-800 h-screen w-full flex items-start gap-3">
           <Sidebar/>
           <MainLayout/>
-        </div>
+          </div>
+      )
+      }
+      
 
     </div>
   );
