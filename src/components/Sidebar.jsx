@@ -1,6 +1,7 @@
 const Sidebar = () => {
     return ( 
-        <div className="bg-neutral-900 h-screen w-[15%] flex items-center justify-center">
+        <div className="w-[15%] hidden md:block">
+            <div className="bg-neutral-900 h-screen w-full flex items-center justify-center">
             <div className="h-[90%] w-[80%] flex flex-col items-start justify-between">
                 <div className="flex flex-col gap-4">
                     <div className="text-3xl text-blue-500 font-bold">TeleBot</div>
@@ -15,6 +16,8 @@ const Sidebar = () => {
                 
             </div>
         </div>
+        </div>
+        
      );
 }
  

@@ -15,7 +15,7 @@ const MainLayout = () => {
   }, []);
 
   const fetchApiKey = () => {
-    axios.get(`${backendUrl}/admin/api-key`)
+    axios.get(`https://telebotclient.onrender.com/admin/api-key`)
       .then((response) => {
         setApiKey(response.data);
       })
@@ -27,7 +27,7 @@ const MainLayout = () => {
   const updateApiKey = () => {
     const newApiKey = prompt('Enter the new API key:');
     if (newApiKey) {
-      axios.post(`${backendUrl}/admin/api-key`, { key: newApiKey })
+      axios.post(`https://telebotclient.onrender.com/admin/api-key`, { key: newApiKey })
         .then((response) => {
           alert(response.data);
           fetchApiKey();
@@ -39,7 +39,7 @@ const MainLayout = () => {
   };
 
   const deleteUser = (chatId) => {
-    axios.delete(`${backendUrl}/users/${chatId}`)
+    axios.delete(`https://telebotclient.onrender.com/users/${chatId}`)
       .then((response) => {
         alert(response.data.message);
         fetchUsers(); // Refresh the user list after deletion
@@ -50,7 +50,7 @@ const MainLayout = () => {
   };
 
   const fetchUsers = () => {
-    axios.get(`${backendUrl}/users`)
+    axios.get(`https://telebotclient.onrender.com/users`)
       .then((response) => {
         if (Array.isArray(response.data)) {
           setUsers(response.data);
@@ -70,7 +70,7 @@ const MainLayout = () => {
         <h1 className="text-white text-4xl font-bold pt-4">
           Welcome to <span className="text-blue-500">TeleBot</span>
         </h1>
-        <div className="h-[3rem] w-[50%] flex items-center gap-2">
+        <div className="h-[3rem] w-full md:w-[50%] flex items-center gap-2">
           <div className="bg-neutral-600 h-full w-full rounded-xl flex items-center justify-center p-3 pl-6">
             <input
               className="h-full w-full bg-inherit !outline-none text-white"
@@ -88,7 +88,7 @@ const MainLayout = () => {
         </div>
 
         {/* User Table */}
-        <div className='text-white w-[70%] border-none'>
+        <div className='text-white w-full md:w-[70%] border-none'>
           <h2 className="text-xl font-bold mb-2 text-white">Current Users</h2>
           <table className="border-0 w-full mt-5">
             <thead className=' bg-neutral-700'>
