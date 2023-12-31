@@ -94,7 +94,7 @@ const MainLayout = () => {
               </tr>
             </thead>
             <tbody className='text-white'>
-              {users.map((user) => (
+              {/* {users.map((user) => (
                 <tr key={user.chatId}>
                   <td className="bg-neutral-800 px-4 py-2">{user.username}</td>
                   <td className="bg-neutral-800 px-4 py-2">{user.chatId}</td>
@@ -107,7 +107,7 @@ const MainLayout = () => {
                     </button>
                   </td>
                 </tr>
-              ))}
+              ))} */}
             </tbody>
           </table>
         </div>
