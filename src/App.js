@@ -73,24 +73,10 @@ function App() {
 
   return (
     <div>
-      {!loggedIn ? (
-        <div className="bg-neutral-800 h-screen w-full flex items-start gap-3">
-          <GoogleLogin
-            clientId="858360060609-krb15toktbmo01fn7dhj4i0jvh0keimh.apps.googleusercontent.com"
-            buttonText="Sign in with Google"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
-      </div>
-      ) : (
-        <div className="bg-neutral-800 h-screen w-full flex items-start gap-3">
+      <div className="bg-neutral-800 h-screen w-full flex items-start gap-3">
           <Sidebar/>
           <MainLayout/>
         </div>
-      )
-
-      }
 
     </div>
   );
