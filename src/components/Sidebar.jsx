@@ -10,7 +10,7 @@ const Sidebar = () => {
                 </div>
                 <div className="w-full h-[6%] flex items-center gap-2">
                     <div className="bg-blue-500 rounded-full aspect-square h-full"></div>
-                    <div className="font-bold text-white text-md">Your name</div>
+                    <div className="font-bold text-white text-md">Manager</div>
                 </div>
                 
             </div>
